@@ -1,5 +1,5 @@
 import { Product } from '../models/product.model';
-import { products } from '../tmp_data/products';
+import { products } from '../models/product';
 
 export class ProductService {
     // Get all products
