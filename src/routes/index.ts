@@ -1,11 +1,9 @@
 import { Router } from 'express';
-import productRouter from './product.routes';
+import productRouter from '../features/products/routes/product.routes';
+// import userRouter from '../features/users/routes/user.routes';
 
 const apiRouter = Router();
-
-// Mount Routes
 apiRouter.use('/products', productRouter);
+// router.use('/users',    userRouter);
 
-// Other Routes
-
-export default apiRouter; 
+export default apiRouter;
