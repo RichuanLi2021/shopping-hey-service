@@ -1,14 +1,14 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from "body-parser";
-import apiRoutes from './routes';
+import apiRouter from './routes/index';
 import { env } from './config/env';
 
 const app = express();
 
 // CORS configuration
 const corsOptions = {
-    origin: env.corsOrigin,
+    origin: env.CORS_ORIGIN,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Accept'],
     credentials: true
@@ -24,7 +24,7 @@ app.get('/health', (req, res) => {
 });
 
 // Mount all routes under /api
-app.use(env.apiPrefix, apiRoutes);
+app.use(env.API_PREFIX, apiRouter);
 
 // Error handling middleware
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
@@ -33,7 +33,7 @@ app.use((err: Error, req: express.Request, res: express.Response, next: express.
 });
 
 // Start server
-app.listen(env.port, () => {
-    console.log(`Server running in ${env.nodeEnv} mode at http://localhost:${env.port}`);
-    console.log(`API available at http://localhost:${env.port}${env.apiPrefix}`);
+app.listen(env.PORT, () => {
+    console.log(`Server running in ${env.NODE_ENV} mode at http://localhost:${env.PORT}`);
+    console.log(`API available at http://localhost:${env.PORT}${env.API_PREFIX}`);
 });
